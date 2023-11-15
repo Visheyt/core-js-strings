@@ -266,6 +266,11 @@ function formatTime(minutes, seconds) {
     const sec = seconds;
     return `${min}:${sec}`;
   }
+  if (minutes.length !== 1 && seconds.length !== 1) {
+    const min = minutes;
+    const sec = seconds;
+    return `${min}:${sec}`;
+  }
   const min = minutes;
   const sec = `0${seconds}`;
   return `${min}:${sec}`;
