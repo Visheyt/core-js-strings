@@ -60,7 +60,7 @@ function isString(value) {
  *   concatenateStrings('', 'bb') => 'bb'
  */
 function concatenateStrings(value1, value2) {
-  return value1 + value2;
+  return value1.concat(value2);
 }
 
 /**
@@ -75,10 +75,7 @@ function concatenateStrings(value1, value2) {
  *   getFirstChar('') => ''
  */
 function getFirstChar(value) {
-  if (value) {
-    return value[0];
-  }
-  return '';
+  return value.charAt(0);
 }
 
 /**
@@ -140,13 +137,7 @@ function removeTrailingWhitespaces(value) {
  *   repeatString('abc', -2) => ''
  */
 function repeatString(str, times) {
-  let counter = times;
-  let newStr = '';
-  while (counter > 0) {
-    newStr += str;
-    counter -= 1;
-  }
-  return newStr;
+  return str.repeat(times);
 }
 
 /**
