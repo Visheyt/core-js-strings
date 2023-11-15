@@ -137,7 +137,10 @@ function removeTrailingWhitespaces(value) {
  *   repeatString('abc', -2) => ''
  */
 function repeatString(str, times) {
-  return str.repeat(times);
+  if (str && times > 0) {
+    return str.repeat(times);
+  }
+  return '';
 }
 
 /**
@@ -153,7 +156,9 @@ function repeatString(str, times) {
  *   removeFirstOccurrences('ABABAB', 'BA') => 'ABAB'.
  */
 function removeFirstOccurrences(str, value) {
-  const newStr = str.replace(value, '');
+  const newStr =
+    str.slice(0, str.indexOf(value)) +
+    str.slice(str.indexOf(value) + value.length);
   return newStr;
 }
 
@@ -170,8 +175,10 @@ function removeFirstOccurrences(str, value) {
  *   removeLastOccurrences('ABABAB', 'BA') => 'ABAB'.
  */
 function removeLastOccurrences(str, value) {
-  const newStr = str.split(' ').reverse().join(' ').replace(value, '');
-  return newStr.split(' ').reverse().join(' ');
+  const newStr =
+    str.slice(0, str.lastIndexOf(value)) +
+    str.slice(str.lastIndexOf(value) + value.length);
+  return newStr;
 }
 
 /**
@@ -247,24 +254,10 @@ function endsWith(str, substr) {
  *   formatTime(0, 0) => "00:00"
  */
 function formatTime(minutes, seconds) {
-  if (minutes.length === 1 && seconds.length === 1) {
-    const min = `0${minutes}`;
-    const sec = `0${seconds}`;
-    return `${min}:${sec}`;
-  }
-  if (minutes.length === 1 && seconds.length !== 1) {
-    const min = `0${minutes}`;
-    const sec = seconds;
-    return `${min}:${sec}`;
-  }
-  if (minutes.length !== 1 && seconds.length !== 1) {
-    const min = minutes;
-    const sec = seconds;
-    return `${min}:${sec}`;
-  }
-  const min = minutes;
-  const sec = `0${seconds}`;
-  return `${min}:${sec}`;
+  return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(
+    2,
+    '0'
+  )}`;
 }
 
 /**
@@ -482,8 +475,9 @@ function unbracketTag(str) {
  *   ],
  *   'info@gmail.com' => ['info@gmail.com']
  */
-function extractEmails(/* str */) {
-  throw new Error('Not implemented');
+function extractEmails(str) {
+  const newArr = str.split(';');
+  return newArr;
 }
 
 /**
