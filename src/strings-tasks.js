@@ -159,7 +159,10 @@ function removeFirstOccurrences(str, value) {
   const newStr =
     str.slice(0, str.indexOf(value)) +
     str.slice(str.indexOf(value) + value.length);
-  return newStr;
+  if (str.indexOf(value) !== -1) {
+    return newStr;
+  }
+  return str;
 }
 
 /**
@@ -178,7 +181,10 @@ function removeLastOccurrences(str, value) {
   const newStr =
     str.slice(0, str.lastIndexOf(value)) +
     str.slice(str.lastIndexOf(value) + value.length);
-  return newStr;
+  if (str.indexOf(value) !== -1) {
+    return newStr;
+  }
+  return str;
 }
 
 /**
@@ -346,7 +352,21 @@ function countVowels(str) {
  *   isPalindrome('No lemon, no melon') => true
  */
 function isPalindrome(str) {
-  return str === str.split('').reverse().join('');
+  const newStr = str
+    .replace('.', '')
+    .replace('!', '')
+    .replace('?', '')
+    .replaceAll(',', '')
+    .replaceAll(' ', '');
+  const str1 = str
+    .replace('.', '')
+    .replace('!', '')
+    .replace('?', '')
+    .replaceAll(',', '')
+    .replaceAll(' ', '');
+  return (
+    str1.toLowerCase() === newStr.split('').reverse().join('').toLowerCase()
+  );
 }
 
 /**
